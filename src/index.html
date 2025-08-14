@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="row" style="margin-top: 2em">
+        <input
+          type="file"
+          id="md-upload"
+          accept=".md,.markdown,text/markdown"
+          style="display: none"
+        />
+        <label
+          for="md-upload"
+          id="md-upload-label"
+          class="icon-btn"
+          style="margin-right: 1em"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
+            />
+          </svg>
+        </label>
+        <button
+          id="quarto-render-btn"
+          class="icon-btn"
+          style="margin-left: 1em; display: none"
+          title="Render"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="icon-svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="quarto-render-msg"
+        style="margin-top: 1em; color: #555; font-size: 0.95em"
+      ></div>
+
+      <section style="margin-top: 3em">
+        <h2>Quarto 설치</h2>
+        <div id="quarto-status" style="margin-bottom: 1em">
+          <span
+            id="quarto-indicator"
+            style="
+              display: inline-block;
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              background: #aaa;
+              vertical-align: middle;
+              margin-right: 8px;
+            "
+          ></span>
+          <span id="quarto-status-text">Quarto 설치 상태 확인 중...</span>
+        </div>
+        <button
+          id="quarto-official-btn"
+          style="display: none; margin-bottom: 1em"
+        >
+          공식 설치 페이지 열기
+        </button>
+
+        <div
+          id="quarto-install-msg"
+          style="margin-top: 1em; color: #555; font-size: 0.95em"
+        ></div>
+      </section>
+
+      <div style="margin-top: 0.5em">
+        <input
+          id="quarto-download-name"
+          type="text"
+          placeholder="다운로드 파일명 (예: my_slide.html)"
+          style="width: 220px; display: none"
+        />
+        <button
+          id="quarto-download-btn"
+          style="display: none; margin-left: 0.5em"
+        >
+          HTML 다운로드
+        </button>
+      </div>
+    </main>
+    <!-- marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      // 파일 업로드 input 요소
+      const upload = document.getElementById("md-upload");
+      if (upload) {
+        upload.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = function (ev) {
+            const mdText = ev.target.result;
+            // 필요하다면 여기서 window.uploadedMarkdown 등으로 저장
+          };
+          reader.readAsText(file);
+        });
+      }
+
+      // Quarto 설치 스크립트 다운로드 기능
+      const installBtn = document.getElementById("quarto-install-btn");
+      const installMsg = document.getElementById("quarto-install-msg");
+      let selectedOS = "mac";
+      document.querySelectorAll('input[name="os-select"]').forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          selectedOS = e.target.value;
+          installMsg.textContent = "";
+        });
+      });
+      installBtn.addEventListener("click", () => {
+        if (selectedOS === "mac") {
+          // macOS용 설치 스크립트 다운로드
+          downloadFile("quarto/install_quarto.sh", "install_quarto.sh");
+          installMsg.innerHTML =
+            "다운로드가 완료되면 터미널에서 <b>bash install_quarto.sh</b> 명령어를 실행하세요.";
+        } else {
+          // Windows용 설치 스크립트 다운로드
+          downloadFile(
+            "quarto/install_quarto_win.bat",
+            "install_quarto_win.bat"
+          );
+          installMsg.innerHTML =
+            "다운로드가 완료되면 명령 프롬프트에서 <b>install_quarto_win.bat</b> 명령어를 실행하세요.";
+        }
+      });
+      // 파일 다운로드 함수
+      function downloadFile(filePath, fileName) {
+        const a = document.createElement("a");
+        a.href = filePath;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    </script>
+  </body>
+</html>
