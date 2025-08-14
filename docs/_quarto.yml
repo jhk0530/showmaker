@@ -3,12 +3,11 @@ project:
   type: website
 
 website:
-  title: "docs"
+  title: "showmaker"
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Get started
 
 format:
   html:

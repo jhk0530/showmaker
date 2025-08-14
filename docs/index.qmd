@@ -1,7 +1,113 @@
 ---
-title: "docs"
+title: "How to use showmaker"
 ---
 
-This is a Quarto website.
+## 1. Install
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Check [release page](https://github.com/jhk0530/showmaker/releases) to download
+
+## 2. Markdown Files
+
+### Header
+
+Header **must** include `title`, `author`, `format`, `embed-resources` like below
+
+```markdown
+---
+title: "This is title"
+author: "Author"
+format: revealjs
+embed-resources: true
+---
+```
+
+### Body
+
+- Each page will divided by `#`
+
+```markdown
+# Title of page1
+
+# Title of Page2
+
+```
+
+For more information, see [Quarto presentation](https://quarto.org/docs/presentations/)
+
+## 3. Example Markdown
+
+````markdown
+---
+title: "쇼메(Showmaker) 데모"
+author: "showmaker"
+format: revealjs
+embed-resources: true
+---
+
+# 소개
+
+- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.
+- Rust + Tauri 기반 데스크톱 앱입니다.
+- 간단한 CLI나 UI에서 사용 가능합니다.
+
+# 주요 기능
+
+1. Markdown 입력 → Quarto 슬라이드 변환
+2. 테마 선택 가능
+3. PDF, HTML로 내보내기 지원
+
+# 예시 코드
+
+```python
+print("Hello, Showmaker!")
+```
+
+Markdown만 있으면 프레젠테이션 제작 완료!
+지금 바로 쇼메로 시작해 보세요 🐾
+
+# 특징
+
+- **슬라이드 분할**: `---` 로 구분
+- **코드 블록**: `python … `
+- **이미지 삽입**: 외부 URL 사용
+- **메타데이터**: Quarto 슬라이드 포맷(revealjs) 지정
+
+````
+
+## 4. Result
+
+<iframe src="example.html" width="100%" height="500px" style="border:2px solid #888; border-radius:8px;"></iframe>
+
+## 5. Guide to ChatGPT (or Other AI)
+
+```markdown
+Make markdown file to build slide with this instruction
+
+1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`
+
+for example, 
+
+---
+title: "쇼메(Showmaker) 데모"
+author: "showmaker"
+format: revealjs
+embed-resources: true
+---
+
+2. Each page should divided by #
+
+for example,
+
+# 소개
+
+- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.
+- Rust + Tauri 기반 데스크톱 앱입니다.
+- 간단한 CLI나 UI에서 사용 가능합니다.
+
+# 주요 기능
+
+1. Markdown 입력 → Quarto 슬라이드 변환
+2. 테마 선택 가능
+3. PDF, HTML로 내보내기 지원
+
+```

@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "docs",
+    "title": "How to use showmaker",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Check release page to download"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,47 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "How to use showmaker",
+    "section": "",
+    "text": "Check release page to download"
+  },
+  {
+    "objectID": "index.html#example-markdown",
+    "href": "index.html#example-markdown",
+    "title": "How to use showmaker",
+    "section": "3. Example Markdown",
+    "text": "3. Example Markdown\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원\n\n# 예시 코드\n\n```python\nprint(\"Hello, Showmaker!\")\n```\n\nMarkdown만 있으면 프레젠테이션 제작 완료!\n지금 바로 쇼메로 시작해 보세요 🐾\n\n# 특징\n\n- **슬라이드 분할**: `---` 로 구분\n- **코드 블록**: `python … `\n- **이미지 삽입**: 외부 URL 사용\n- **메타데이터**: Quarto 슬라이드 포맷(revealjs) 지정"
+  },
+  {
+    "objectID": "index.html#example-markdown-1",
+    "href": "index.html#example-markdown-1",
+    "title": "How to use showmaker",
+    "section": "Example markdown",
+    "text": "Example markdown\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원\n\n# 예시 코드\n\n```python\nprint(\"Hello, Showmaker!\")\n```\n\nMarkdown만 있으면 프레젠테이션 제작 완료!\n지금 바로 쇼메로 시작해 보세요 🐾\n\n# 특징\n\n- **슬라이드 분할**: `---` 로 구분\n- **코드 블록**: `python … `\n- **이미지 삽입**: 외부 URL 사용\n- **메타데이터**: Quarto 슬라이드 포맷(revealjs) 지정"
+  },
+  {
+    "objectID": "index.html#result",
+    "href": "index.html#result",
+    "title": "How to use showmaker",
+    "section": "4. Result",
+    "text": "4. Result"
+  },
+  {
+    "objectID": "index.html#markdown-files",
+    "href": "index.html#markdown-files",
+    "title": "How to use showmaker",
+    "section": "2. Markdown Files",
+    "text": "2. Markdown Files\n\nHeader\nHeader must include title, author, format, embed-resources like below\n---\ntitle: \"This is title\"\nauthor: \"Author\"\nformat: revealjs\nembed-resources: true\n---\n\n\nBody\n\nEach page will divided by #\n\n# Title of page1\n\n# Title of Page2\nFor more information, see Quarto presentation"
+  },
+  {
+    "objectID": "index.html#guide-to-chatgpt-or-other-ai",
+    "href": "index.html#guide-to-chatgpt-or-other-ai",
+    "title": "How to use showmaker",
+    "section": "5. Guide to ChatGPT (or Other AI)",
+    "text": "5. Guide to ChatGPT (or Other AI)\nMake markdown file to build slide with this instruction\n\n1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`\n\nfor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nfor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
   }
 ]
