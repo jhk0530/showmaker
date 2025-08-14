@@ -38,8 +38,8 @@
     "objectID": "index.html#result",
     "href": "index.html#result",
     "title": "How to use showmaker",
-    "section": "4. Result",
-    "text": "4. Result"
+    "section": "5. Result",
+    "text": "5. Result"
   },
   {
     "objectID": "index.html#markdown-files",
@@ -52,8 +52,8 @@
     "objectID": "index.html#guide-to-chatgpt-or-other-ai",
     "href": "index.html#guide-to-chatgpt-or-other-ai",
     "title": "How to use showmaker",
-    "section": "5. Guide to ChatGPT (or Other AI)",
-    "text": "5. Guide to ChatGPT (or Other AI)\nMake markdown file to build slide with this instruction\n\n1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`\n\nfor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nfor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
+    "section": "6. Guide to ChatGPT (or Other AI)",
+    "text": "6. Guide to ChatGPT (or Other AI)\nMake markdown file to build slide with this instruction\n\n1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`\n\nfor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nfor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
   },
   {
     "objectID": "index.html#usage",
