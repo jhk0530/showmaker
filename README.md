@@ -14,7 +14,7 @@ Make slide file from AI generated markdown file.
 ![Copilot](https://img.shields.io/badge/Github_Copilot-000000?style=for-the-badge&logo=githubcopilot)
 ![Gemini](https://img.shields.io/badge/Gemini-000000?style=for-the-badge&logo=googlegemini)
 
-
+[Download](https://github.com/jhk0530/showmaker/releases)
 
 ## This markdown to 
 
