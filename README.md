@@ -40,12 +40,12 @@
 
 Follow these five simple steps to create your first presentation with `showmaker`:
 
-1. Prepare a markdown file – Create or obtain a sample `.md` file. 
-Utilizing AI to generate a markdown file is recommended, see AI generated slide-markdown file below. 
+1. Prepare a markdown file – Create or obtain a sample `.md` file.
+   Utilizing AI to generate a markdown file is recommended, see AI generated slide-markdown file below.
 
 > [!IMPORTANT]  
 > The result markdown file must contain header as shown in the example below.
-> 
+>
 > For more information, see [Quarto Presentation](https://quarto.org/docs/presentations/revealjs/)
 
 ```markdown
@@ -128,45 +128,52 @@ embed-resources: true
 ---
 
 # What is Tauri?
+
 - A framework for building desktop applications
 - Uses web technologies (HTML, CSS, JavaScript)
 - Runs on a lightweight Rust backend
 
 # Key Features
+
 - Small bundle size
 - Secure by default
 - Cross-platform support (Windows, macOS, Linux)
 
 # Why Use Tauri?
+
 - Better performance than Electron
 - Lower memory usage
 - Flexible frontend framework choice (React, Vue, Svelte, etc.)
 
 # Architecture Overview
+
 - Frontend: Any modern web framework
 - Backend: Rust-powered core
 - Communication via secure API bridge
 
 # Development Workflow
+
 - Write frontend like a web app
 - Integrate with Rust commands
 - Build native executables
 
 # Example Use Cases
+
 - Productivity tools
 - Note-taking apps
 - Markdown editors
 
 # Getting Started
+
 - Install Rust
 - Create Tauri project (`npm create tauri-app`)
 - Develop, build, and ship your app
 
 # Resources
+
 - Official site: https://tauri.app
 - GitHub repository: https://github.com/tauri-apps/tauri
 - Community Discord & discussions
-
 ```
 
 ## Contributing
@@ -189,3 +196,20 @@ Contributions are welcome! Whether it’s reporting a bug, suggesting a new feat
 
 If you find a bug or have a feature request, please open an issue and include as much detail as possible.
 
+## Running Tests
+
+showmaker includes a comprehensive test suite to ensure that Markdown parsing, Quarto rendering, and error handling work as expected.
+
+To run all tests, execute:
+
+```
+cargo test
+```
+
+This will compile the project in test mode and run:
+
+- Unit tests for YAML front matter validation
+- Rendering tests (mocked) to verify HTML slide generation
+- Error-handling tests for invalid input, unsupported formats, and missing dependencies
+
+All tests are automated and can be run on any supported platform without requiring an internet connection.
