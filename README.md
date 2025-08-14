@@ -38,7 +38,7 @@
 
 ## Quick Start
 
-Follow these three simple steps to create your first presentation with `showmaker`:
+Follow these five simple steps to create your first presentation with `showmaker`:
 
 1. Prepare a markdown file – Create or obtain a sample `.md` file. 
 Utilizing AI to generate a markdown file is recommended, see AI generated slide-markdown file below. 
@@ -92,10 +92,10 @@ embed-resources: true
 
 ## AI generated slide-markdown file
 
-You can refer this prompt to let AI generate markdown file.
+You can use this prompt to have an AI generate a markdown file.
 
 ```
-Make simple slide for introduce tauri as markdown format.
+Make a simple slide to introduce Tauri in markdown format.
 
 1. The Markdown file must include a YAML header containing author, title, format, and embed-resources, as shown in the example below.
 
@@ -106,7 +106,7 @@ format: revealjs
 embed-resources: true
 ---
 
-2. each slide is consisted with title and contents separated by # and - for example
+2. Each slide consists of a title and content, separated by # and -. For example:
 
 # page1
 - item 1
@@ -175,7 +175,7 @@ Contributions are welcome! Whether it’s reporting a bug, suggesting a new feat
 
 ### How to contribute:
 
-1. **Open an issue** – Before starting any work, please [open an issue](../../issues/new) to discuss your idea or report a bug. This helps prevent duplicated work and ensures your contribution aligns with the project’s goals.
+1. **Open an issue** – Before starting any work, please [open an issue](https://github.com/jhk0530/showmaker/issues/new) to discuss your idea or report a bug. This helps prevent duplicated work and ensures your contribution aligns with the project’s goals.
 2. **Fork** the repository and create your branch from main.
 3. **Make your changes** – follow the project’s coding style and include relevant tests if applicable.
 4. **Commit** your changes with a clear, descriptive message.
