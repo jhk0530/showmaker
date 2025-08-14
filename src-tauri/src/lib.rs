@@ -1,13 +1,5 @@
-#[tauri::command]
-fn get_tauri_env_path() -> String {
-    std::env::var("PATH").unwrap_or_else(|_| "(PATH 없음)".to_string())
-}
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
 
 #[tauri::command]
 fn check_quarto_installed() -> Result<String, String> {
