@@ -11,18 +11,37 @@
   <body>
     <main class="container">
       <div class="row" style="margin-top: 2em">
+        <div class="icon-indicator" style="margin-right: 1em" title="Render">
+          <div id="quarto-status">
+            <span
+              id="quarto-indicator"
+              style="vertical-align: middle; display: inline-block"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="icon-svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m4.5 12.75 6 6 9-13.5"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
         <input
           type="file"
           id="md-upload"
           accept=".md,.markdown,text/markdown"
           style="display: none"
         />
-        <label
-          for="md-upload"
-          id="md-upload-label"
-          class="icon-btn"
-          style="margin-right: 1em"
-        >
+        <label for="md-upload" id="md-upload-label" class="icon-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -46,6 +65,24 @@
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="icon-svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <button
+          id="quarto-download-btn"
+          class="icon-btn"
+          style="display: none; margin-left: 1em"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -55,58 +92,9 @@
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
+              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
             />
           </svg>
-        </button>
-      </div>
-      <div
-        id="quarto-render-msg"
-        style="margin-top: 1em; color: #555; font-size: 0.95em"
-      ></div>
-
-      <section style="margin-top: 3em">
-        <h2>Quarto 설치</h2>
-        <div id="quarto-status" style="margin-bottom: 1em">
-          <span
-            id="quarto-indicator"
-            style="
-              display: inline-block;
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
-              background: #aaa;
-              vertical-align: middle;
-              margin-right: 8px;
-            "
-          ></span>
-          <span id="quarto-status-text">Quarto 설치 상태 확인 중...</span>
-        </div>
-        <button
-          id="quarto-official-btn"
-          style="display: none; margin-bottom: 1em"
-        >
-          공식 설치 페이지 열기
-        </button>
-
-        <div
-          id="quarto-install-msg"
-          style="margin-top: 1em; color: #555; font-size: 0.95em"
-        ></div>
-      </section>
-
-      <div style="margin-top: 0.5em">
-        <input
-          id="quarto-download-name"
-          type="text"
-          placeholder="다운로드 파일명 (예: my_slide.html)"
-          style="width: 220px; display: none"
-        />
-        <button
-          id="quarto-download-btn"
-          style="display: none; margin-left: 0.5em"
-        >
-          HTML 다운로드
         </button>
       </div>
     </main>
@@ -128,32 +116,6 @@
         });
       }
 
-      // Quarto 설치 스크립트 다운로드 기능
-      const installBtn = document.getElementById("quarto-install-btn");
-      const installMsg = document.getElementById("quarto-install-msg");
-      let selectedOS = "mac";
-      document.querySelectorAll('input[name="os-select"]').forEach((radio) => {
-        radio.addEventListener("change", (e) => {
-          selectedOS = e.target.value;
-          installMsg.textContent = "";
-        });
-      });
-      installBtn.addEventListener("click", () => {
-        if (selectedOS === "mac") {
-          // macOS용 설치 스크립트 다운로드
-          downloadFile("quarto/install_quarto.sh", "install_quarto.sh");
-          installMsg.innerHTML =
-            "다운로드가 완료되면 터미널에서 <b>bash install_quarto.sh</b> 명령어를 실행하세요.";
-        } else {
-          // Windows용 설치 스크립트 다운로드
-          downloadFile(
-            "quarto/install_quarto_win.bat",
-            "install_quarto_win.bat"
-          );
-          installMsg.innerHTML =
-            "다운로드가 완료되면 명령 프롬프트에서 <b>install_quarto_win.bat</b> 명령어를 실행하세요.";
-        }
-      });
       // 파일 다운로드 함수
       function downloadFile(filePath, fileName) {
         const a = document.createElement("a");

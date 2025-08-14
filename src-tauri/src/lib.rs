@@ -1,3 +1,7 @@
+#[tauri::command]
+fn get_tauri_env_path() -> String {
+    std::env::var("PATH").unwrap_or_else(|_| "(PATH 없음)".to_string())
+}
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
 #[tauri::command]
@@ -17,8 +21,32 @@ fn check_quarto_installed() -> Result<String, String> {
 
     let mut tried = Vec::new();
 
+    // dev_path: 환경변수 TAURI_DEV_PATH가 있으면 우선 사용, 없으면 기존 PATH에 주요 경로를 추가
+    let dev_path = std::env::var("TAURI_DEV_PATH").ok().or_else(|| {
+        let mut path = std::env::var("PATH").unwrap_or_default();
+        let home_cargo_bin = format!("{}/.cargo/bin", std::env::var("HOME").unwrap_or_default());
+        let extra = vec![
+            "/usr/local/bin",
+            "/opt/homebrew/bin",
+            "/opt/homebrew/sbin",
+            "/Applications/quarto/bin",
+            home_cargo_bin.as_str(),
+        ];
+        for p in extra {
+            if !path.split(':').any(|x| x == p) {
+                path.push(':');
+                path.push_str(p);
+            }
+        }
+        Some(path)
+    });
     for path in candidates.iter() {
-        let output = Command::new(path).arg("--version").output();
+        let mut cmd = Command::new(path);
+        cmd.arg("--version");
+        if let Some(dev_path) = dev_path.as_ref() {
+            cmd.env("PATH", dev_path);
+        }
+        let output = cmd.output();
         match output {
             Ok(out) if out.status.success() => {
                 let ver = String::from_utf8_lossy(&out.stdout).trim().to_string();
@@ -86,14 +114,33 @@ fn render_quarto_file(md_content: String, orig_name: Option<String>) -> Result<S
     let html_path = md_path.with_extension("html");
     let mut last_err: Option<String> = None;
 
+    let dev_path = std::env::var("TAURI_DEV_PATH").ok().or_else(|| {
+        let mut path = std::env::var("PATH").unwrap_or_default();
+        let home_cargo_bin = format!("{}/.cargo/bin", std::env::var("HOME").unwrap_or_default());
+        let extra = vec![
+            "/usr/local/bin",
+            "/opt/homebrew/bin",
+            "/opt/homebrew/sbin",
+            "/Applications/quarto/bin",
+            home_cargo_bin.as_str(),
+        ];
+        for p in extra {
+            if !path.split(':').any(|x| x == p) {
+                path.push(':');
+                path.push_str(p);
+            }
+        }
+        Some(path)
+    });
     for path in candidates.iter() {
-        // 작업 디렉터리를 임시 폴더로 고정 (상대 출력 경로 문제 방지)
-        let output = Command::new(path)
-            .arg("render")
-            .arg(&md_path)
-            // .arg("--to").arg("html")
-            .current_dir(&tmp_dir)
-            .output();
+        let mut cmd = Command::new(path);
+        cmd.arg("render");
+        cmd.arg(&md_path);
+        cmd.current_dir(&tmp_dir);
+        if let Some(dev_path) = dev_path.as_ref() {
+            cmd.env("PATH", dev_path);
+        }
+        let output = cmd.output();
 
         match output {
             Ok(out) if out.status.success() => {
@@ -197,7 +244,6 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
-            greet,
             check_quarto_installed,
             render_quarto_file,
             download_rendered_html,
