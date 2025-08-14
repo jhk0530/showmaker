@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "How to use showmaker",
     "section": "",
-    "text": "Check release page to download"
+    "text": "Install Quarto first,\nInstall showmaker from release page to download"
   },
   {
     "objectID": "about.html",
@@ -18,7 +18,7 @@
     "href": "index.html#install",
     "title": "How to use showmaker",
     "section": "",
-    "text": "Check release page to download"
+    "text": "Install Quarto first,\nInstall showmaker from release page to download"
   },
   {
     "objectID": "index.html#example-markdown",
@@ -54,5 +54,12 @@
     "title": "How to use showmaker",
     "section": "5. Guide to ChatGPT (or Other AI)",
     "text": "5. Guide to ChatGPT (or Other AI)\nMake markdown file to build slide with this instruction\n\n1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`\n\nfor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nfor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "How to use showmaker",
+    "section": "4. Usage",
+    "text": "4. Usage\n\nThe most left button is indicator, If this button is not green check, please install Quarto and re-launch application\nSecond button is upload button, upload your markdown file.\n\nAfter upload markdown file, the third button will appear, it will render markdown to slide. So click it.\n\nAfter few seconds, final download button will show, please save result slide as you want."
   }
 ]
