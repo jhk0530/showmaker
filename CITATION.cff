@@ -1,0 +1,41 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: showmaker
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jinhwan
+    family-names: Kim
+    email: jinhwan@jahnen.io
+    affiliation: jahnen
+    orcid: 'https://orcid.org/0009-0009-3217-2417'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.16879081
+repository-code: 'https://github.com/jhk0530/showmaker'
+url: 'https://github.com/jhk0530/showmaker'
+abstract: >-
+  showmaker is an open‑source, cross‑platform desktop app
+  that turns Markdown —often authored with generative
+  AI—into Quarto‑based, interactive HTML slides. Built with
+  Rust and Tauri, it offers a simple, user‑friendly
+  interface with no command‑line setup. With a
+  straightforward installer, built‑in theme support, and
+  smooth integration with existing Markdown workflows,
+  showmaker streamlines the path from draft to polished web
+  slides.
+keywords:
+  - ai
+  - slide
+  - generation
+  - tauri
+  - quarto
+  - llm
+license: Apache-2.0
+commit: a1052b6ac4f4091e0f23c08acd3c5c7287e3c271
+version: '0.1'
+date-released: '2025-08-14'
