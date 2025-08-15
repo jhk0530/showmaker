@@ -14,6 +14,10 @@
 ![Copilot](https://img.shields.io/badge/Github_Copilot-000000?style=for-the-badge&logo=githubcopilot)
 ![Gemini](https://img.shields.io/badge/Gemini-000000?style=for-the-badge&logo=googlegemini)
 
+[![](https://img.shields.io/badge/DOI-10.5281/zenodo.16879083-1f57b6?style=for-the-badge&link=https://doi.org/10.5281/zenodo.16879083)](https://doi.org/10.5281/zenodo.16879083)
+
+
+
 # showmaker
 
 `showmaker` is an open‑source, cross‑platform desktop app that turns **Markdown** —often authored with generative AI—into Quarto‑based, interactive **HTML slides**. Built with `Rust` and `Tauri`, it offers a simple, user‑friendly interface with no command‑line setup. With a straightforward installer, built‑in theme support, and smooth integration with existing Markdown workflows, `showmaker` streamlines the path from draft to polished web slides.
