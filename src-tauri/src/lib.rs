@@ -139,9 +139,9 @@ fn download_rendered_html(html_path: String) -> Result<(String, String), String>
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
         .map(|name| {
-            // remove trailing _숫자 before extension, e.g. ppt_1755325282888.pptx -> ppt.pptx
+            // remove trailing _number before extension, e.g. ppt_1755325282888.pptx -> ppt.pptx
             let re = regex::Regex::new(r"^(.*?)(?:_\d+)?(\.[^.]+)$")
-                .expect("Failed to compile regex for stripping trailing _숫자 from filename");
+                .expect("Failed to compile regex for stripping trailing _number from filename");
             if let Some(caps) = re.captures(&name) {
                 format!("{}{}", &caps[1], &caps[2])
             } else {
