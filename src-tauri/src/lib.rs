@@ -148,10 +148,6 @@ fn download_rendered_html(html_path: String) -> Result<(String, String), String>
                 name
             }
         });
-
-    // print file_name    
-    println!("HTML 파일 이름: {:?}", file_name);
-    // make file_name as string
         
 
     let filename = file_name.unwrap_or_else(|| "output.html".to_string());
@@ -193,11 +189,12 @@ async fn save_html_file(
 
     let mut dialog = window.dialog().file().set_file_name(&file_name);
 
-    // If file_name has extension, do not add any filter (prevent double extension)
-    // If not, add only "All Files" filter
-    if !has_ext {
-        dialog = dialog.add_filter("All Files", &["*"]);
+    // If file_name has an extension, add that extension as a filter
+    if let Some(ext) = std::path::Path::new(&file_name).extension().and_then(|s| s.to_str()) {
+        dialog = dialog.add_filter(ext, &[ext]);
     }
+    // Always add "All Files" filter
+    dialog = dialog.add_filter("All Files", &["*"]);
 
     dialog.save_file(move |file_path| {
         let _ = tx.send(file_path);

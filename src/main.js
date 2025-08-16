@@ -51,19 +51,11 @@ window.addEventListener("DOMContentLoaded", () => {
         const [fileName, base64] = await invoke("download_rendered_html", {
           htmlPath: lastHtmlPath,
         });
-        console.log("htmlPath: ", lastHtmlPath);
-        console.log("[다운로드] fileName:", fileName);
-        console.log("[다운로드] base64 length:", base64 ? base64.length : 0);
-        console.log("lastMdname: ", lastMdName);
 
-        // fileName's extension
-        let ext = fileName.split(".").pop();
-        console.log("ext: ", ext);
+        // Use fileName directly as saveName
+        const saveName = fileName;
 
-        let saveName = fileName;
-        console.log("saveName: ", saveName);
-
-        // Tauri 네이티브 파일 저장 대화상자 사용
+        // Use Tauri native file save dialog
         try {
           const result = await invoke("save_html_file", {
             htmlPath: lastHtmlPath,
@@ -72,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
           console.log(result);
         } catch (saveError) {
           console.error("Tauri 저장 실패:", saveError);
-          // fallback으로 브라우저 다운로드 사용
+          // Fallback: browser download
           const link = document.createElement("a");
           link.href = "data:text/html;base64," + base64;
           link.download = saveName;
