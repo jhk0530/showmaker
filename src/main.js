@@ -51,12 +51,17 @@ window.addEventListener("DOMContentLoaded", () => {
         const [fileName, base64] = await invoke("download_rendered_html", {
           htmlPath: lastHtmlPath,
         });
+        console.log("htmlPath: ", lastHtmlPath);
         console.log("[다운로드] fileName:", fileName);
         console.log("[다운로드] base64 length:", base64 ? base64.length : 0);
-        let saveName = lastMdName
-          ? lastMdName.replace(/\.[^.]+$/, "")
-          : "output";
-        saveName = saveName + ".html";
+        console.log("lastMdname: ", lastMdName);
+
+        // fileName's extension
+        let ext = fileName.split(".").pop();
+        console.log("ext: ", ext);
+
+        let saveName = fileName;
+        console.log("saveName: ", saveName);
 
         // Tauri 네이티브 파일 저장 대화상자 사용
         try {

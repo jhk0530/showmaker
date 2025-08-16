@@ -7,6 +7,7 @@ use serde::Deserialize;
 // ===============================
 
 /// Quarto용 필수 front matter 구조체
+#[allow(dead_code)] // dead_code 경고 무시
 #[derive(Debug, Deserialize)]
 struct FrontMatter {
     title: String,
@@ -43,9 +44,10 @@ fn validate_markdown_header(md: &str) -> Result<FrontMatter, String> {
         .map_err(|e| format!("Invalid YAML front matter: {}", e))?;
 
     // format 필수값 체크
-    if fm.format.trim() != "revealjs" {
+    let allowed_formats = ["revealjs", "pptx", "beamer"];
+    if !allowed_formats.iter().any(|&f| f == fm.format.trim()) {
         return Err(format!(
-            "Unsupported format: {} (expected: revealjs)",
+            "Unsupported format: {} (expected: revealjs, pptx, or beamer)",
             fm.format
         ));
     }
@@ -129,18 +131,34 @@ fn check_quarto_installed() -> Result<String, String> {
 fn download_rendered_html(html_path: String) -> Result<(String, String), String> {
     use base64::{engine::general_purpose, Engine as _};
     use std::fs;
-    use std::path::Path;
+    use std::path::Path; 
 
     let path = Path::new(&html_path);
+    
     let file_name = path
         .file_name()
         .map(|n| n.to_string_lossy().to_string())
-        .unwrap_or_else(|| "output.html".to_string());
+        .map(|name| {
+            // remove trailing _숫자 before extension, e.g. ppt_1755325282888.pptx -> ppt.pptx
+            let re = regex::Regex::new(r"^(.*?)(?:_\d+)?(\.[^.]+)$").unwrap();
+            if let Some(caps) = re.captures(&name) {
+                format!("{}{}", &caps[1], &caps[2])
+            } else {
+                name
+            }
+        });
+
+    // print file_name    
+    println!("HTML 파일 이름: {:?}", file_name);
+    // make file_name as string
+        
+
+    let filename = file_name.unwrap_or_else(|| "output.html".to_string());
 
     match fs::read(&path) {
         Ok(bytes) => {
             let encoded = general_purpose::STANDARD.encode(&bytes);
-            Ok((file_name, encoded))
+            Ok((filename, encoded))
         }
         Err(e) => Err(format!("HTML 파일 읽기 실패: {}", e)),
     }
@@ -159,23 +177,32 @@ async fn save_html_file(
 
     let file_name = default_name.unwrap_or_else(|| "output.html".to_string());
 
-    // HTML 읽기
+    // Read HTML file
     let html_content = fs::read(&html_path)
         .map_err(|e| format!("HTML 파일 읽기 실패: {}", e))?;
 
-    // 파일 저장 대화상자 (콜백 → 채널)
+    // File save dialog (callback → channel)
     let (tx, rx) = mpsc::channel();
-    window
-        .dialog()
-        .file()
-        .set_file_name(&file_name)
-        .add_filter("HTML", &["html"])
-        .add_filter("All Files", &["*"])
-        .save_file(move |file_path| {
-            let _ = tx.send(file_path);
-        });
 
-    // 결과 수신 및 변환
+    // Check if file_name already has an extension
+    let has_ext = std::path::Path::new(&file_name)
+        .extension()
+        .and_then(|e| e.to_str())
+        .is_some();
+
+    let mut dialog = window.dialog().file().set_file_name(&file_name);
+
+    // If file_name has extension, do not add any filter (prevent double extension)
+    // If not, add only "All Files" filter
+    if !has_ext {
+        dialog = dialog.add_filter("All Files", &["*"]);
+    }
+
+    dialog.save_file(move |file_path| {
+        let _ = tx.send(file_path);
+    });
+
+    // Receive result and save
     let save_path: Option<PathBuf> = rx
         .recv()
         .map_err(|_| "파일 선택 대화상자 오류".to_string())?
@@ -195,7 +222,7 @@ async fn save_html_file(
 // Render with DI (for testability)
 // ===============================
 
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 /// Quarto 실행 담당 인터페이스
 trait QuartoRunner {
@@ -249,7 +276,7 @@ fn render_with_runner<R: QuartoRunner>(
 ) -> Result<String, String> {
     use std::env;
     use std::fs;
-    use std::path::Path;
+    use std::path::{Path, PathBuf};
     use std::time::{SystemTime, UNIX_EPOCH};
 
     // 1) 입력 검증
@@ -270,6 +297,8 @@ fn render_with_runner<R: QuartoRunner>(
         "md" | "qmd" => ext,
         _ => "md".to_string(),
     };
+
+
 
     let mut md_path: PathBuf = tmp_dir.clone();
     md_path.push(format!("{}.{}", stem, ext));
@@ -300,15 +329,22 @@ fn render_with_runner<R: QuartoRunner>(
     // 5) Quarto 렌더 실행
     runner.render(&md_path, &tmp_dir, dev_path.as_deref())?;
 
-    // 6) 결과 HTML 확인
-    let html_path = md_path.with_extension("html");
-    if html_path.exists() {
-        let abs = html_path.canonicalize().unwrap_or(html_path.clone());
-        Ok(abs.to_string_lossy().to_string())
+    // 6) 결과 파일 확인 (html, pdf, pptx 순서로 탐색)
+    let mut found = None;
+    for ext in &["html", "pdf", "pptx"] {
+        let candidate = md_path.with_extension(ext);
+        if candidate.exists() {
+            let abs = candidate.canonicalize().unwrap_or(candidate.clone());
+            found = Some(abs.to_string_lossy().to_string());
+            break;
+        }
+    }
+    if let Some(path) = found {
+        Ok(path)
     } else {
         Err(format!(
-            "Quarto render 성공 코드이나 HTML이 보이지 않습니다. 경로=`{}`",
-            html_path.to_string_lossy()
+            "Quarto render는 성공했으나 결과 파일이 보이지 않습니다. 경로 prefix=`{}`",
+            md_path.with_extension("").to_string_lossy()
         ))
     }
 }
@@ -377,7 +413,7 @@ embed-resources: true
         let md = r#"---
 title: "Intro"
 author: "Alice"
-format: beamer
+format: invalidformat
 embed-resources: true
 ---
 # Slide
@@ -418,7 +454,7 @@ embed-resources: true
 mod render_tests {
     use super::*;
     use std::fs;
-    use std::path::{Path, PathBuf};
+    use std::path::Path;
 
     // 유효한 Markdown 샘플
     fn valid_md() -> String {
