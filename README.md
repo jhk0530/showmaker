@@ -26,6 +26,11 @@
 
 > [!IMPORTANT]  
 > You must install [Quarto](https://quarto.org/docs/get-started/) to run `showmaker`
+> 
+> If `showmaker` show red check instead green check, please install and restart PC again 
+
+<img width="500" alt="quarto" src="https://github.com/user-attachments/assets/6b64ebe4-bdd1-4d8f-8082-4affa5aac87d" />
+
 
 ## Installation
 
