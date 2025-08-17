@@ -181,12 +181,6 @@ async fn save_html_file(
     // File save dialog (callback → channel)
     let (tx, rx) = mpsc::channel();
 
-    // Check if file_name already has an extension
-    let has_ext = std::path::Path::new(&file_name)
-        .extension()
-        .and_then(|e| e.to_str())
-        .is_some();
-
     let mut dialog = window.dialog().file().set_file_name(&file_name);
 
     // If file_name has an extension, add that extension as a filter
