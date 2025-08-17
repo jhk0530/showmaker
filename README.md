@@ -39,8 +39,8 @@
 > [!IMPORTANT]  
 > Linux is not currently supported.
 
-[![Windows](https://custom-icon-badges.demolab.com/badge/-Windows-0078D6?style=for-the-badge&logo=windows11)](https://github.com/jhk0530/showmaker/releases/download/v0.1/showmaker_0.1.0_x64_en-US.msi)
-[![MacOS](https://img.shields.io/badge/-MacOS-0078D6?style=for-the-badge&logo=apple)](https://github.com/jhk0530/showmaker/releases/download/v0.1/showmaker_0.1.0_aarch64.dmg)
+[![Windows](https://custom-icon-badges.demolab.com/badge/-Windows-0078D6?style=for-the-badge&logo=windows11)](https://github.com/jhk0530/showmaker/releases/download/v0.2.1/showmaker_0.2.1_x64_en-US.msi)
+[![MacOS](https://img.shields.io/badge/-MacOS-0078D6?style=for-the-badge&logo=apple)](https://github.com/jhk0530/showmaker/releases/download/v0.2.1/showmaker_0.2.1_aarch64.dmg)
 
 2. Run the installer and follow the prompts.
 3. Launch `showmaker` from your applications menu.
