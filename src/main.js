@@ -1,8 +1,38 @@
+// Dedicated error handler for logging and notification
+function handleError(...args) {
+  console.error(...args);
+  if (args.length > 0 && typeof showNotification === "function") {
+    const msg = args
+      .map((arg) =>
+        typeof arg === "object" ? JSON.stringify(arg) : String(arg)
+      )
+      .join(" ");
+    showNotification(msg);
+  }
+}
+// Simple notification function
+function showNotification(message) {
+  const n = document.createElement("div");
+  n.className = "notification";
+  n.textContent = message;
+  document.body.appendChild(n);
+  // Force a DOM reflow so that the browser applies the initial styles of the notification
+  // before the "show" class is added. This ensures the CSS transition animates properly.
+  void n.offsetWidth;
+  n.classList.add("show");
+  setTimeout(() => {
+    n.classList.remove("show");
+  }, 1800);
+  setTimeout(() => {
+    n.remove();
+  }, 2200);
+}
+
 const { invoke } = window.__TAURI__.core;
 
 window.addEventListener("DOMContentLoaded", () => {
-  // 마크다운 업로드 및 Quarto Render 버튼
   const upload = document.getElementById("md-upload");
+  const uploadLabel = document.getElementById("md-upload-label");
   const renderBtn = document.getElementById("quarto-render-btn");
   const downloadBtn = document.getElementById("quarto-download-btn");
   let lastMdContent = null;
@@ -15,7 +45,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const reader = new FileReader();
       reader.onload = function (ev) {
         const mdText = ev.target.result;
-        // 미리보기 없이 업로드 내용만 저장
+        // Save uploaded content only, no preview
         lastMdContent = mdText;
         lastMdName = file.name;
       };
@@ -25,8 +55,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   if (renderBtn) {
     renderBtn.addEventListener("click", async () => {
+      if (renderBtn.disabled) return;
       if (!lastMdContent) {
-        console.log("먼저 마크다운 파일을 업로드하세요.");
+        console.log("Please upload a markdown file first.");
         return;
       }
       if (downloadBtn) downloadBtn.style.display = "none";
@@ -35,11 +66,10 @@ window.addEventListener("DOMContentLoaded", () => {
           mdContent: lastMdContent,
           origName: lastMdName,
         });
-        console.log("Quarto render 성공!");
         lastHtmlPath = htmlPath;
         if (downloadBtn) downloadBtn.style.display = "inline-flex";
       } catch (e) {
-        console.log("Quarto render 실패:", e);
+        handleError("Quarto render failed:", e);
         if (downloadBtn) downloadBtn.style.display = "none";
       }
     });
@@ -63,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
           });
           console.log(result);
         } catch (saveError) {
-          console.error("Tauri 저장 실패:", saveError);
+          handleError("Tauri save failed:", saveError);
           // Fallback: browser download
           const link = document.createElement("a");
           link.href = "data:text/html;base64," + base64;
@@ -71,25 +101,44 @@ window.addEventListener("DOMContentLoaded", () => {
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          console.log("HTML 다운로드 완료 (fallback)");
+          console.log("HTML download complete (fallback)");
         }
       } catch (e) {
-        console.log("HTML 다운로드 실패:", e);
-        downloadBtn.textContent = "다운로드 에러";
-        console.error("[다운로드] 에러:", e);
+        console.log("HTML download failed:", e);
+        downloadBtn.textContent = "Download error";
+        handleError("[Download] Error:", e);
       }
     });
   }
 
-  // Quarto 설치 상태 indicator는 항상 동작
   const indicator = document.getElementById("quarto-indicator");
+  function setQuartoUI(installed) {
+    if (!indicator) return;
+    if (installed) {
+      indicator.style.color = "#4caf50";
+      if (uploadLabel) {
+        uploadLabel.classList.remove("disabled");
+        uploadLabel.title = "Upload";
+        uploadLabel.style.pointerEvents = "auto";
+        uploadLabel.style.opacity = "1";
+        const tooltip = document.getElementById("md-upload-tooltip");
+        if (tooltip) tooltip.style.display = "none";
+      }
+    } else {
+      indicator.style.color = "#f44336";
+      if (uploadLabel) {
+        uploadLabel.classList.add("disabled");
+        uploadLabel.title = "";
+        uploadLabel.style.pointerEvents = "none";
+        uploadLabel.style.opacity = "0.5";
+        const tooltip = document.getElementById("md-upload-tooltip");
+        if (tooltip) tooltip.style.display = "block";
+      }
+    }
+  }
   if (indicator && typeof invoke === "function") {
     invoke("check_quarto_installed")
-      .then((ver) => {
-        indicator.style.color = "#4caf50";
-      })
-      .catch((err) => {
-        indicator.style.color = "#f44336";
-      });
+      .then(() => setQuartoUI(true))
+      .catch(() => setQuartoUI(false));
   }
 });

@@ -6,15 +6,15 @@ use serde::Deserialize;
 // Front matter validation
 // ===============================
 
-/// Quarto용 필수 front matter 구조체
-#[allow(dead_code)] // dead_code 경고 무시
+/// Required front matter struct for Quarto
+#[allow(dead_code)] // ignore dead_code warning
 #[derive(Debug, Deserialize)]
 struct FrontMatter {
     title: String,
     author: String,
     format: String,
     #[serde(rename = "embed-resources", default)]
-    embed_resources: bool, // 누락 시 false로 파싱 → 검증 단계에서 사용자 친화적 에러
+    embed_resources: bool, // If missing, parsed as false → user-friendly error at validation stage
 }
 
 /// Markdown 문자열에서 YAML front matter 추출 (누수 없는 슬라이스 버전)

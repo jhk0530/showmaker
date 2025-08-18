@@ -9,59 +9,74 @@
   </head>
 
   <body>
-    <!-- 오른쪽 상단 깃허브 아이콘 -->
-    <a href="https://github.com/jhk0530/showmaker" target="_blank" rel="noopener noreferrer" class="github-float-btn" title="GitHub">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32" style="display:block;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2Z" />
-      </svg>
-    </a>
-</style>
-<style>
-.github-float-btn {
-  position: fixed;
-  top: 24px;
-  right: 32px;
-  z-index: 1000;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 6px;
-  transition: box-shadow 0.2s, background 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-}
-.github-float-btn:hover {
-  background: #f6f8fa;
-  box-shadow: 0 4px 16px rgba(57,108,216,0.13);
-}
-.github-float-btn svg {
-  color: #24292f;
-}
-</style>
+    <div class="btn-wrapper">
+      <a
+        href="https://github.com/jhk0530/showmaker"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-float-btn"
+        title="GitHub"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          width="32"
+          height="32"
+          style="display: block"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2Z"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://github.com/jhk0530/showmaker/releases"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-float-btn"
+        id="at-float-btn"
+        title="Contact"
+        style="position: relative"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+          width="32"
+          height="32"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"
+          />
+        </svg>
+        <span class="at-tooltip">v0.2.2</span>
+      </a>
+    </div>
+
     <main class="container">
-      <div class="row" style="margin-top: 2em">
-        <div class="icon-indicator" style="margin-right: 1em" title="Render">
+      <div
+        class="row center-btn-row"
+        style="
+          margin-top: 2em;
+          justify-content: center;
+          align-items: center;
+          gap: 2em;
+        "
+      >
+        <div class="icon-indicator" title="Upload">
           <div id="quarto-status">
             <span
               id="quarto-indicator"
-              style="vertical-align: middle; display: inline-block"
+              style="vertical-align: middle; display: none"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="icon-svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m4.5 12.75 6 6 9-13.5"
-                />
-              </svg>
             </span>
           </div>
         </div>
@@ -87,6 +102,15 @@
               d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
             />
           </svg>
+          <span class="custom-tooltip" id="md-upload-tooltip">
+            Quarto not installed<br />
+            <a
+              href="https://quarto.org/docs/get-started/"
+              target="_blank"
+              style="color: #4cafef; text-decoration: underline"
+              >Install Quarto</a
+            >
+          </span>
         </label>
         <button
           id="quarto-render-btn"
@@ -132,7 +156,7 @@
     <!-- marked.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-      // 파일 업로드 input 요소
+      // File upload input element
       const upload = document.getElementById("md-upload");
       if (upload) {
         upload.addEventListener("change", (e) => {
@@ -141,13 +165,13 @@
           const reader = new FileReader();
           reader.onload = function (ev) {
             const mdText = ev.target.result;
-            // 필요하다면 여기서 window.uploadedMarkdown 등으로 저장
+            // Save to window.uploadedMarkdown here if needed
           };
           reader.readAsText(file);
         });
       }
 
-      // 파일 다운로드 함수
+      // File download function
       function downloadFile(filePath, fileName) {
         const a = document.createElement("a");
         a.href = filePath;
