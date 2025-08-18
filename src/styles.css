@@ -1,17 +1,52 @@
-/* upload, play 아이콘 버튼 공통 스타일 */
-.icon-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 7em;
-  height: 7em;
-  border-radius: 12px;
-  border: none;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-  transition: box-shadow 0.2s, background 0.2s;
-  padding: 0;
-  margin: 0;
+/* @ button hover tooltip */
+.at-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 12px;
+  position: absolute;
+  z-index: 1001;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  font-size: 0.95em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#at-float-btn:hover .at-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+/* Custom tooltip style */
+.custom-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 12px;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  transition: opacity 0.2s;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+.custom-tooltip a {
+  pointer-events: auto;
+}
+#md-upload-label.disabled .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+#md-upload-label {
+  position: relative;
 }
 
 .icon-btn {
@@ -26,7 +61,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
   transition: box-shadow 0.2s, background 0.2s;
   cursor: pointer;
-  padding: 0;
+  /* Custom tooltip style */
   margin: 0;
 }
 .icon-btn:hover {
@@ -156,4 +191,32 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+}
+
+.github-float-btn {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 6px;
+  transition: box-shadow 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  position: static;
+}
+.github-float-btn:hover {
+  background: #f6f8fa;
+  box-shadow: 0 4px 16px rgba(57, 108, 216, 0.13);
+}
+.github-float-btn svg {
+  color: #24292f;
+}
+.github-float-btn-wrapper {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
 }
