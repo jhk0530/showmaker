@@ -1,6 +1,6 @@
 [package]
 name = "showmaker"
-version = "0.2.2"
+version = "0.2.3"
 description = "Markdown to Slide"
 authors = ["jhk0530"]
 edition = "2021"

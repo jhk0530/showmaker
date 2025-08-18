@@ -1,4 +1,3 @@
-/* Notification styles */
 .notification {
   position: fixed;
   bottom: 40px;
@@ -27,8 +26,11 @@
   display: flex;
   gap: 10px;
 }
+
 /* @ button hover tooltip */
-.at-tooltip {
+.at-tooltip,
+.docu-tooltip,
+.repo-tooltip {
   visibility: hidden;
   opacity: 0;
   background: #222;
@@ -49,31 +51,17 @@
   visibility: visible;
   opacity: 1;
 }
-/* Custom tooltip style */
-.custom-tooltip {
-  visibility: hidden;
-  opacity: 0;
-  background: #222;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 6px 12px;
-  position: absolute;
-  z-index: 1001;
-  left: 50%;
-  top: 110%;
-  transform: translateX(-50%);
-  transition: opacity 0.2s;
-  font-size: 0.95em;
-  white-space: nowrap;
-}
-.custom-tooltip a {
-  pointer-events: auto;
-}
-#md-upload-label.disabled .custom-tooltip {
+
+#new-document-btn:hover .docu-tooltip {
   visibility: visible;
   opacity: 1;
 }
+
+#github-float-btn:hover .repo-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 #md-upload-label {
   position: relative;
 }
@@ -82,8 +70,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7em;
-  height: 7em;
+  width: 10em;
+  height: 10em;
   border-radius: 12px;
   border: none;
   background: #fff;
@@ -100,8 +88,8 @@
   background: #e8e8e8;
 }
 .icon-svg {
-  width: 3em;
-  height: 3em;
+  width: 5em;
+  height: 5em;
   display: block;
 }
 .logo.vanilla:hover {
@@ -231,7 +219,7 @@ button {
   align-items: center;
   justify-content: center;
   border: none;
-  position: static;
+  position: relative;
 }
 .github-float-btn:hover {
   background: #f6f8fa;
@@ -239,4 +227,11 @@ button {
 }
 .github-float-btn svg {
   color: #24292f;
+}
+/* Render 버튼 wrapper 스타일 */
+.render-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
 }
