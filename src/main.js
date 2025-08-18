@@ -16,7 +16,8 @@ function showNotification(message) {
   n.className = "notification";
   n.textContent = message;
   document.body.appendChild(n);
-  // Force reflow to enable transition
+  // Force a DOM reflow so that the browser applies the initial styles of the notification
+  // before the "show" class is added. This ensures the CSS transition animates properly.
   void n.offsetWidth;
   n.classList.add("show");
   setTimeout(() => {

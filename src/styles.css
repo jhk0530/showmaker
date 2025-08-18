@@ -59,7 +59,7 @@
   border-radius: 6px;
   padding: 6px 12px;
   position: absolute;
-  z-index: 10;
+  z-index: 1001;
   left: 50%;
   top: 110%;
   transform: translateX(-50%);
