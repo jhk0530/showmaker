@@ -1,3 +1,27 @@
+// 다운로드 및 저장 처리 함수 (다운로드 실패 시 fallback까지 포함)
+async function downloadAndSave(htmlPath) {
+  try {
+    const [fileName, base64] = await invoke("download_rendered_html", {
+      htmlPath,
+    });
+    const saveName = fileName;
+    try {
+      await invoke("save_html_file", { htmlPath, defaultName: saveName });
+    } catch (saveError) {
+      handleError("Tauri save failed:", saveError);
+      // Fallback: browser download
+      const link = document.createElement("a");
+      link.href = "data:text/html;base64," + base64;
+      link.download = saveName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log("HTML download complete (fallback)");
+    }
+  } catch (error) {
+    handleError("Download or save failed:", error);
+  }
+}
 // Dedicated error handler for logging and notification
 function handleError(...args) {
   console.error(...args);
@@ -42,11 +66,11 @@ window.addEventListener("DOMContentLoaded", () => {
     upload.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      // 확장자 체크: .md만 허용
+      // Check file extension: only allow .md files
       if (!file.name.toLowerCase().endsWith(".md")) {
         showNotification("Only .md files are allowed!");
         e.target.value = "";
-        if (mdHeaderInfo) mdHeaderInfo.innerHTML = "";
+
         if (renderBtn) renderBtn.style.display = "none";
         return;
       }
@@ -67,39 +91,13 @@ window.addEventListener("DOMContentLoaded", () => {
         console.log("Please upload a markdown file first.");
         return;
       }
-
       try {
         const htmlPath = await invoke("render_quarto_file", {
           mdContent: lastMdContent,
           origName: lastMdName,
         });
         lastHtmlPath = htmlPath;
-
-        try {
-          const [fileName, base64] = await invoke("download_rendered_html", {
-            htmlPath: lastHtmlPath,
-          });
-          const saveName = fileName;
-          try {
-            const result = await invoke("save_html_file", {
-              htmlPath: lastHtmlPath,
-              defaultName: saveName,
-            });
-            console.log(result);
-          } catch (saveError) {
-            handleError("Tauri save failed:", saveError);
-            // Fallback: browser download
-            const link = document.createElement("a");
-            link.href = "data:text/html;base64," + base64;
-            link.download = saveName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            console.log("HTML download complete (fallback)");
-          }
-        } catch (e) {
-          handleError("[Download] Error:", e);
-        }
+        await downloadAndSave(htmlPath);
       } catch (e) {
         handleError("Quarto render failed:", e);
       }
@@ -137,29 +135,3 @@ window.addEventListener("DOMContentLoaded", () => {
       .catch(() => setQuartoUI(false));
   }
 });
-
-/*
-// File upload input element
-const upload = document.getElementById("md-upload");
-if (upload) {
-  upload.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function (ev) {
-      const mdText = ev.target.result;
-      // Save to window.uploadedMarkdown here if needed
-    };
-    reader.readAsText(file);
-  });
-}
-*/
-// File download function
-function downloadFile(filePath, fileName) {
-  const a = document.createElement("a");
-  a.href = filePath;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}

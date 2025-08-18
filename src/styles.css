@@ -219,7 +219,7 @@ button {
   align-items: center;
   justify-content: center;
   border: none;
-  position: static;
+  position: relative;
 }
 .github-float-btn:hover {
   background: #f6f8fa;
@@ -227,4 +227,11 @@ button {
 }
 .github-float-btn svg {
   color: #24292f;
+}
+/* Render 버튼 wrapper 스타일 */
+.render-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
 }
