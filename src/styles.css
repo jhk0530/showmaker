@@ -1,3 +1,32 @@
+/* Notification styles */
+.notification {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(40, 40, 40, 0.95);
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  z-index: 9999;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.notification.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Floating button container for GitHub and @ buttons */
+.btn-wrapper {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
 /* @ button hover tooltip */
 .at-tooltip {
   visibility: hidden;

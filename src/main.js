@@ -1,7 +1,6 @@
-// Override console.error to also show notification
-const originalConsoleError = console.error;
-console.error = function (...args) {
-  originalConsoleError.apply(console, args);
+// Dedicated error handler for logging and notification
+function handleError(...args) {
+  console.error(...args);
   if (args.length > 0 && typeof showNotification === "function") {
     const msg = args
       .map((arg) =>
@@ -10,29 +9,18 @@ console.error = function (...args) {
       .join(" ");
     showNotification(msg);
   }
-};
+}
 // Simple notification function
 function showNotification(message) {
   const n = document.createElement("div");
+  n.className = "notification";
   n.textContent = message;
-  n.style.position = "fixed";
-  n.style.bottom = "40px";
-  n.style.right = "40px";
-  n.style.background = "rgba(40,40,40,0.95)";
-  n.style.color = "#fff";
-  n.style.padding = "16px 28px";
-  n.style.borderRadius = "8px";
-  n.style.fontSize = "1.1em";
-  n.style.zIndex = 9999;
-  n.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
-  n.style.opacity = "0";
-  n.style.transition = "opacity 0.2s";
   document.body.appendChild(n);
+  // Force reflow to enable transition
+  void n.offsetWidth;
+  n.classList.add("show");
   setTimeout(() => {
-    n.style.opacity = "1";
-  }, 10);
-  setTimeout(() => {
-    n.style.opacity = "0";
+    n.classList.remove("show");
   }, 1800);
   setTimeout(() => {
     n.remove();
@@ -123,29 +111,33 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const indicator = document.getElementById("quarto-indicator");
+  function setQuartoUI(installed) {
+    if (!indicator) return;
+    if (installed) {
+      indicator.style.color = "#4caf50";
+      if (uploadLabel) {
+        uploadLabel.classList.remove("disabled");
+        uploadLabel.title = "Upload";
+        uploadLabel.style.pointerEvents = "auto";
+        uploadLabel.style.opacity = "1";
+        const tooltip = document.getElementById("md-upload-tooltip");
+        if (tooltip) tooltip.style.display = "none";
+      }
+    } else {
+      indicator.style.color = "#f44336";
+      if (uploadLabel) {
+        uploadLabel.classList.add("disabled");
+        uploadLabel.title = "";
+        uploadLabel.style.pointerEvents = "none";
+        uploadLabel.style.opacity = "0.5";
+        const tooltip = document.getElementById("md-upload-tooltip");
+        if (tooltip) tooltip.style.display = "block";
+      }
+    }
+  }
   if (indicator && typeof invoke === "function") {
     invoke("check_quarto_installed")
-      .then((ver) => {
-        indicator.style.color = "#4caf50";
-        if (uploadLabel) {
-          uploadLabel.classList.remove("disabled");
-          uploadLabel.title = "Upload";
-          uploadLabel.style.pointerEvents = "auto";
-          uploadLabel.style.opacity = "1";
-          const tooltip = document.getElementById("md-upload-tooltip");
-          if (tooltip) tooltip.style.display = "none";
-        }
-      })
-      .catch((err) => {
-        indicator.style.color = "#f44336";
-        if (uploadLabel) {
-          uploadLabel.classList.add("disabled");
-          uploadLabel.title = "";
-          uploadLabel.style.pointerEvents = "none";
-          uploadLabel.style.opacity = "0.5";
-          const tooltip = document.getElementById("md-upload-tooltip");
-          if (tooltip) tooltip.style.display = "block";
-        }
-      });
+      .then(() => setQuartoUI(true))
+      .catch(() => setQuartoUI(false));
   }
 });
