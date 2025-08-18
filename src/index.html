@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tauri App</title>
     <script type="module" src="/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
-
   <body>
     <div class="btn-wrapper">
       <a
@@ -15,7 +15,8 @@
         target="_blank"
         rel="noopener noreferrer"
         class="github-float-btn"
-        title="GitHub"
+        id="github-float-btn"
+        style="position: relative"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +32,7 @@
             d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .268.18.579.688.481C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2Z"
           />
         </svg>
+        <span class="repo-tooltip">Homepage</span>
       </a>
       <a
         href="https://github.com/jhk0530/showmaker/releases"
@@ -38,7 +40,6 @@
         rel="noopener noreferrer"
         class="github-float-btn"
         id="at-float-btn"
-        title="Contact"
         style="position: relative"
       >
         <svg
@@ -59,14 +60,12 @@
         </svg>
         <span class="at-tooltip">v0.2.2</span>
       </a>
-
       <a
         id="new-document-btn"
         href="https://jhk0530.github.io/showmaker/"
         rel="noopener noreferrer"
         target="_blank"
         class="github-float-btn"
-        title="New Document"
         style="position: relative"
       >
         <svg
@@ -85,18 +84,14 @@
             d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
           />
         </svg>
+        <span class="docu-tooltip">Manual</span>
       </a>
     </div>
 
     <main class="container">
       <div
         class="row center-btn-row"
-        style="
-          margin-top: 2em;
-          justify-content: center;
-          align-items: center;
-          gap: 2em;
-        "
+        style="justify-content: center; align-items: center; gap: 2em"
       >
         <div class="icon-indicator" title="Upload">
           <div id="quarto-status">
@@ -108,12 +103,8 @@
           </div>
         </div>
 
-        <input
-          type="file"
-          id="md-upload"
-          accept=".md,.markdown,text/markdown"
-          style="display: none"
-        />
+        <input type="file" id="md-upload" accept=".md" style="display: none" />
+
         <label for="md-upload" id="md-upload-label" class="icon-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -129,6 +120,7 @@
               d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
             />
           </svg>
+
           <span class="custom-tooltip" id="md-upload-tooltip">
             Quarto not installed<br />
             <a
@@ -139,74 +131,36 @@
             >
           </span>
         </label>
-        <button
-          id="quarto-render-btn"
-          class="icon-btn"
-          style="margin-left: 1em; display: none"
-          title="Render"
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+          "
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="icon-svg"
+          <button
+            id="quarto-render-btn"
+            class="icon-btn"
+            style="margin-left: 1em; display: none"
+            title="Render"
           >
-            <path
-              fill-rule="evenodd"
-              d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <button
-          id="quarto-download-btn"
-          class="icon-btn"
-          style="display: none; margin-left: 1em"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="icon-svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="icon-svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </main>
-    <!-- marked.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-      // File upload input element
-      const upload = document.getElementById("md-upload");
-      if (upload) {
-        upload.addEventListener("change", (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = function (ev) {
-            const mdText = ev.target.result;
-            // Save to window.uploadedMarkdown here if needed
-          };
-          reader.readAsText(file);
-        });
-      }
-
-      // File download function
-      function downloadFile(filePath, fileName) {
-        const a = document.createElement("a");
-        a.href = filePath;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }
-    </script>
   </body>
 </html>
