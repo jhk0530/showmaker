@@ -8,7 +8,7 @@
     <script type="module" src="/main.js" defer></script>
   </head>
 
-  <body>    
+  <body>
     <div
       style="
         position: fixed;
@@ -48,7 +48,7 @@
         class="github-float-btn"
         id="at-float-btn"
         title="Contact"
-        style="position: relative;"
+        style="position: relative"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,22 +66,26 @@
             d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"
           />
         </svg>
-        <span class="at-tooltip">v0.2.1</span>
+        <span class="at-tooltip">v0.2.2</span>
       </a>
     </div>
-    
+
     <main class="container">
-  <div class="row center-btn-row" style="margin-top: 2em; justify-content: center; align-items: center; gap: 2em;">
-        <div
-          class="icon-indicator"          
-          title="Upload"
-        >
+      <div
+        class="row center-btn-row"
+        style="
+          margin-top: 2em;
+          justify-content: center;
+          align-items: center;
+          gap: 2em;
+        "
+      >
+        <div class="icon-indicator" title="Upload">
           <div id="quarto-status">
             <span
               id="quarto-indicator"
               style="vertical-align: middle; display: none"
             >
-            <div class="github-float-btn-wrapper">              
             </span>
           </div>
         </div>
@@ -117,52 +121,51 @@
             >
           </span>
         </label>
-        
       </div>
       <button
-          id="quarto-render-btn"
-          class="icon-btn"
-          style="margin-left: 1em; display: none"
-          title="Render"
+        id="quarto-render-btn"
+        class="icon-btn"
+        style="margin-left: 1em; display: none"
+        title="Render"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="icon-svg"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="icon-svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <button
-          id="quarto-download-btn"
-          class="icon-btn"
-          style="display: none; margin-left: 1em"
+          <path
+            fill-rule="evenodd"
+            d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+      <button
+        id="quarto-download-btn"
+        class="icon-btn"
+        style="display: none; margin-left: 1em"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="icon-svg"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="icon-svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-            />
-          </svg>
-        </button>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+          />
+        </svg>
+      </button>
     </main>
     <!-- marked.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-  // File upload input element
+      // File upload input element
       const upload = document.getElementById("md-upload");
       if (upload) {
         upload.addEventListener("change", (e) => {
@@ -177,7 +180,7 @@
         });
       }
 
-  // File download function
+      // File download function
       function downloadFile(filePath, fileName) {
         const a = document.createElement("a");
         a.href = filePath;

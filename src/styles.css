@@ -61,7 +61,6 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
   transition: box-shadow 0.2s, background 0.2s;
   cursor: pointer;
-  /* Custom tooltip style */
   margin: 0;
 }
 .icon-btn:hover {
@@ -211,12 +210,4 @@ button {
 }
 .github-float-btn svg {
   color: #24292f;
-}
-.github-float-btn-wrapper {
-  position: fixed;
-  top: 24px;
-  right: 32px;
-  z-index: 1000;
-  display: flex;
-  gap: 10px;
 }
