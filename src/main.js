@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
         lastHtmlPath = htmlPath;
         if (downloadBtn) downloadBtn.style.display = "inline-flex";
       } catch (e) {
-        console.error("Quarto render failed:", e);
+        handleError("Quarto render failed:", e);
         if (downloadBtn) downloadBtn.style.display = "none";
       }
     });
@@ -93,7 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
           });
           console.log(result);
         } catch (saveError) {
-          console.error("Tauri save failed:", saveError);
+          handleError("Tauri save failed:", saveError);
           // Fallback: browser download
           const link = document.createElement("a");
           link.href = "data:text/html;base64," + base64;
@@ -106,7 +106,7 @@ window.addEventListener("DOMContentLoaded", () => {
       } catch (e) {
         console.log("HTML download failed:", e);
         downloadBtn.textContent = "Download error";
-        console.error("[Download] Error:", e);
+        handleError("[Download] Error:", e);
       }
     });
   }
