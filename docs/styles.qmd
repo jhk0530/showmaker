@@ -37,7 +37,7 @@ Here is the full list of available themes:
 
 ## [Aside & Footnotes](https://quarto.org/docs/presentations/revealjs/#asides-footnotes)
 
-Asides contain content of more peripheral interest, and are displayed in a smaller, lighter font at the bottom of the slide. Creates asides using a div with the `aside` class. 
+Asides contain content of more peripheral interest, and are displayed in a smaller, lighter font at the bottom of the slide. Create asides using a div with the `aside` class. 
 
 For example:
 

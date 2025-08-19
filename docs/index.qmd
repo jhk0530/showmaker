@@ -26,7 +26,7 @@ embed-resources: true
 
 You can use `revealjs`(HTML), `pptx`(pptx), `beamer`(pdf) for format.
 
-However, `beamer` requires to install additional tool, so I strongly recommend to use `revealjs `to render HTML and print or save it as PDF.
+However, `beamer` requires to install additional tool, so I strongly recommend to use `revealjs` to render HTML and print or save it as PDF.
 
 
 ### Body
