@@ -15,6 +15,8 @@
 ![Gemini](https://img.shields.io/badge/Gemini-000000?style=for-the-badge&logo=googlegemini)
 
 [![](https://img.shields.io/badge/DOI-10.5281/zenodo.16879083-1f57b6?style=for-the-badge&link=https://doi.org/10.5281/zenodo.16879083)](https://doi.org/10.5281/zenodo.16879083)
+[![status](https://joss.theoj.org/papers/5ed47445d51cf7993e73cfbcbea901d6/status.svg)](https://joss.theoj.org/papers/5ed47445d51cf7993e73cfbcbea901d6)
+
 
 # showmaker
 
