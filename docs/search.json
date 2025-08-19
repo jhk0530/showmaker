@@ -46,7 +46,7 @@
     "href": "index.html#markdown-files",
     "title": "How to use showmaker",
     "section": "2. Markdown Files",
-    "text": "2. Markdown Files\n\nHeader\n\nHeader must include title, author, format, embed-resources like below\n\n---\ntitle: \"This is title\"\nauthor: \"Author\"\nformat: revealjs\nembed-resources: true\n---\nYou can use revealjs(HTML), pptx(pptx), beamer(pdf) for format.\nHowever, beamer requires to install additional tool, so I strongly recommend to use revealjsto render HTML and print or save it as PDF.\n\n\nBody\n\nEach page will divided by # and conatin content with -\n\n# Title of page1\n\n- A\n- B\n\n# Title of Page2\n\n- C\n- D\nFor more information, see Quarto presentation"
+    "text": "2. Markdown Files\n\nHeader\n\nHeader must include title, author, format, embed-resources like below\n\n---\ntitle: \"This is title\"\nauthor: \"Author\"\nformat: revealjs\nembed-resources: true\n---\nYou can use revealjs(HTML), pptx(pptx), beamer(pdf) for format.\nHowever, beamer requires to install additional tool, so I strongly recommend to use revealjsto render HTML and print or save it as PDF.\n\n\nBody\n\nEach page will divided by # (or ##, ---) and contain content with -\nIf # and ## are both used, # is used as Section, and ## is used for Page.\n\n# Title of page1\n\n- A\n- B\n\n# Title of Page2\n\n- C\n- D\nFor more information, see Quarto presentation\n\nMultiple Columns\nTo put material in side by side columns, you can use a native div container with class .columns, containing two or more div containers with class .column and a width attribute:\n:::: {.columns}\n\n::: {.column width=\"40%\"}\ncontents...\n:::\n\n::: {.column width=\"60%\"}\ncontents...\n:::\n\n::::"
   },
   {
     "objectID": "index.html#guide-to-chatgpt-or-other-ai",
@@ -68,5 +68,40 @@
     "title": "How to use showmaker",
     "section": "5. Result (HTML)",
     "text": "5. Result (HTML)"
+  },
+  {
+    "objectID": "styles.html",
+    "href": "styles.html",
+    "title": "Style the slide",
+    "section": "",
+    "text": "There are 11 built-in themes provided for Reveal presentations (you can also create your own themes). The default and dark themes use fairly classic typography and color schemes and are a good place to start.\nThe default theme is used automatically — use the theme option in header to switch to an alternate theme.\nFor example:\n---\ntitle: \"Presentation\"\nformat:\n  revealjs: \n    theme: dark\n---\nHere is the full list of available themes:\n\nbeige\nblood\ndark\ndefault\ndracula\nleague\nmoon\nnight\nserif\nsimple\nsky\nsolarized"
+  },
+  {
+    "objectID": "styles.html#themes",
+    "href": "styles.html#themes",
+    "title": "Style the slide",
+    "section": "",
+    "text": "There are 11 built-in themes provided for Reveal presentations (you can also create your own themes). The default and dark themes use fairly classic typography and color schemes and are a good place to start.\nThe default theme is used automatically — use the theme option in header to switch to an alternate theme.\nFor example:\n---\ntitle: \"Presentation\"\nformat:\n  revealjs: \n    theme: dark\n---\nHere is the full list of available themes:\n\nbeige\nblood\ndark\ndefault\ndracula\nleague\nmoon\nnight\nserif\nsimple\nsky\nsolarized"
+  },
+  {
+    "objectID": "styles.html#aside-footnotes",
+    "href": "styles.html#aside-footnotes",
+    "title": "Style the slide",
+    "section": "Aside & Footnotes",
+    "text": "Aside & Footnotes\nAsides contain content of more peripheral interest, and are displayed in a smaller, lighter font at the bottom of the slide. Creates asides using a div with the aside class.\nFor example:\n## Slide Title\n\nSlide content\n\n::: aside\nSome additional commentary of more peripheral interest.\n:::\nFootnotes have a similar visual treatment to asides, but include a footnote number. For example, here we use a footnote and an aside on a single slide:\n## Slide Title\n\n- Green ^[A footnote]\n- Brown\n- Purple\n\n::: aside\nSome additional commentary of more peripheral interest.\n:::"
+  },
+  {
+    "objectID": "styles.html#themes-link",
+    "href": "styles.html#themes-link",
+    "title": "Style the slide",
+    "section": "",
+    "text": "There are 11 built-in themes provided for Reveal presentations (you can also create your own themes). The default and dark themes use fairly classic typography and color schemes and are a good place to start.\nThe default theme is used automatically — use the theme option in header to switch to an alternate theme.\nFor example:\n---\ntitle: \"Presentation\"\nformat:\n  revealjs: \n    theme: dark\n---\nHere is the full list of available themes:\n\nbeige\nblood\ndark\ndefault\ndracula\nleague\nmoon\nnight\nserif\nsimple\nsky\nsolarized"
+  },
+  {
+    "objectID": "styles.html#footer-logo",
+    "href": "styles.html#footer-logo",
+    "title": "Style the slide",
+    "section": "[Footer & Logo]",
+    "text": "[Footer & Logo]"
   }
 ]

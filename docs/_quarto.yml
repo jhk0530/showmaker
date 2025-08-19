@@ -8,6 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Get started
+      - href: styles.qmd
+        text: Styles
 
 format:
   html:

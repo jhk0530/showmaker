@@ -1,0 +1,66 @@
+---
+title: "Style the slide"
+toc: false
+---
+
+## [Themes](https://quarto.org/docs/presentations/revealjs/#themes)
+
+There are 11 built-in themes provided for Reveal presentations (you can also create your own themes). The `default` and `dark` themes use fairly classic typography and color schemes and are a good place to start.
+
+The `default` theme is used automatically — use the `theme` option in header to switch to an alternate theme. 
+
+For example:
+
+```markdown
+---
+title: "Presentation"
+format:
+  revealjs: 
+    theme: dark
+---
+```
+
+Here is the full list of available themes:
+
+- beige
+- blood
+- dark
+- default
+- dracula
+- league
+- moon
+- night
+- serif
+- simple
+- sky
+- solarized
+
+## [Aside & Footnotes](https://quarto.org/docs/presentations/revealjs/#asides-footnotes)
+
+Asides contain content of more peripheral interest, and are displayed in a smaller, lighter font at the bottom of the slide. Creates asides using a div with the `aside` class. 
+
+For example:
+
+```markdown
+## Slide Title
+
+Slide content
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+```
+
+Footnotes have a similar visual treatment to asides, but include a footnote number. For example, here we use a footnote and an aside on a single slide:
+
+```markdown
+## Slide Title
+
+- Green ^[A footnote]
+- Brown
+- Purple
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+```

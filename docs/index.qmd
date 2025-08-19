@@ -1,6 +1,6 @@
 ---
 title: "How to use showmaker"
-toc: false
+toc: true
 ---
 
 ## 1. Install
@@ -31,7 +31,8 @@ However, `beamer` requires to install additional tool, so I strongly recommend t
 
 ### Body
 
-- Each page will divided by `#` and conatin content with `-`
+- Each page will divided by `#` (or `##`, `---`) and contain content with `-`
+- If `#` and `##` are both used, `#` is used as Section, and `##` is used for Page.
 
 ```markdown
 # Title of page1
@@ -47,6 +48,25 @@ However, `beamer` requires to install additional tool, so I strongly recommend t
 
 For more information, see [Quarto presentation](https://quarto.org/docs/presentations/)
 
+#### [Multiple Columns](https://quarto.org/docs/presentations/#multiple-columns)
+
+To put material in side by side columns, you can use a native div container with class `.columns`, 
+containing two or more div containers with class `.column` and a `width` attribute:
+
+````markdown
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+````
 ## 3. Example Markdown
 
 ````markdown
