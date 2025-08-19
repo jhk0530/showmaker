@@ -104,11 +104,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const indicator = document.getElementById("quarto-indicator");
   function setQuartoUI(installed) {
-    if (!indicator) return;
     if (installed) {
-      indicator.style.color = "#4caf50";
       if (uploadLabel) {
         uploadLabel.classList.remove("disabled");
         uploadLabel.title = "Upload";
@@ -118,7 +115,6 @@ window.addEventListener("DOMContentLoaded", () => {
         if (tooltip) tooltip.style.display = "none";
       }
     } else {
-      indicator.style.color = "#f44336";
       if (uploadLabel) {
         uploadLabel.classList.add("disabled");
         uploadLabel.title = "";
@@ -129,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  if (indicator && typeof invoke === "function") {
+  if (typeof invoke === "function") {
     invoke("check_quarto_installed")
       .then(() => setQuartoUI(true))
       .catch(() => setQuartoUI(false));

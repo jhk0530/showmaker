@@ -65,7 +65,31 @@
 #md-upload-label {
   position: relative;
 }
-
+/* Custom tooltip style */
+.custom-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 12px;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  transition: opacity 0.2s;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+.custom-tooltip a {
+  pointer-events: auto;
+}
+#md-upload-label.disabled .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 .icon-btn {
   display: flex;
   align-items: center;
