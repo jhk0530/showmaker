@@ -46,20 +46,27 @@
     "href": "index.html#markdown-files",
     "title": "How to use showmaker",
     "section": "2. Markdown Files",
-    "text": "2. Markdown Files\n\nHeader\nHeader must include title, author, format, embed-resources like below\n---\ntitle: \"This is title\"\nauthor: \"Author\"\nformat: revealjs\nembed-resources: true\n---\n\n\nBody\n\nEach page will divided by #\n\n# Title of page1\n\n# Title of Page2\nFor more information, see Quarto presentation"
+    "text": "2. Markdown Files\n\nHeader\n\nHeader must include title, author, format, embed-resources like below\n\n---\ntitle: \"This is title\"\nauthor: \"Author\"\nformat: revealjs\nembed-resources: true\n---\nYou can use revealjs(HTML), pptx(pptx), beamer(pdf) for format.\nHowever, beamer requires to install additional tool, so I strongly recommend to use revealjsto render HTML and print or save it as PDF.\n\n\nBody\n\nEach page will divided by # and conatin content with -\n\n# Title of page1\n\n- A\n- B\n\n# Title of Page2\n\n- C\n- D\nFor more information, see Quarto presentation"
   },
   {
     "objectID": "index.html#guide-to-chatgpt-or-other-ai",
     "href": "index.html#guide-to-chatgpt-or-other-ai",
     "title": "How to use showmaker",
     "section": "6. Guide to ChatGPT (or Other AI)",
-    "text": "6. Guide to ChatGPT (or Other AI)\nMake markdown file to build slide with this instruction\n\n1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`\n\nfor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nfor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
+    "text": "6. Guide to ChatGPT (or Other AI)\nYou can ask to ChatGPT to build Slide-markdown with below prompt.\n\nIf you think you have better prompt, your contribute is welcome.\n\nPlease make markdown file explaining &lt;TOPIC&gt;, to build slide with this instruction.\n\n1. Markdown should include header to rendered by Quarto: \n`title`, `author`, `format: revealjs`, `embed-resource:true`\n\nFor example, \n\n---\ntitle: \"쇼메(Showmaker) 데모\"\nauthor: \"showmaker\"\nformat: revealjs\nembed-resources: true\n---\n\n2. Each page should divided by #\n\nFor example,\n\n# 소개\n\n- **쇼메**는 Markdown 파일을 Quarto를 통해 슬라이드로 변환합니다.\n- Rust + Tauri 기반 데스크톱 앱입니다.\n- 간단한 CLI나 UI에서 사용 가능합니다.\n\n# 주요 기능\n\n1. Markdown 입력 → Quarto 슬라이드 변환\n2. 테마 선택 가능\n3. PDF, HTML로 내보내기 지원"
   },
   {
     "objectID": "index.html#usage",
     "href": "index.html#usage",
     "title": "How to use showmaker",
     "section": "4. Usage",
-    "text": "4. Usage\n\nThe most left button is indicator, If this button is not green check, please install Quarto and re-launch application\nSecond button is upload button, upload your markdown file.\n\nAfter upload markdown file, the third button will appear, it will render markdown to slide. So click it.\n\nAfter few seconds, final download button will show, please save result slide as you want."
+    "text": "4. Usage\n\nBelow figure is based on v0.2.3\n\nThe main button is upload, If this button is not available, please install Quarto and re-launch application.\n\nThen upload your markdown file. You can upload .md file only. After upload markdown file, the second button will appear, it will render and let you download result file.\n\nThe result file will have same name with upload file. In the example, format used pptx.\n\nThere’s additional buttons in Right Top. Each shows Homepage, Version of showmaker and User manual."
+  },
+  {
+    "objectID": "index.html#result-html",
+    "href": "index.html#result-html",
+    "title": "How to use showmaker",
+    "section": "5. Result (HTML)",
+    "text": "5. Result (HTML)"
   }
 ]

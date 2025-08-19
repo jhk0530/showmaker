@@ -1,5 +1,6 @@
 ---
 title: "How to use showmaker"
+toc: false
 ---
 
 ## 1. Install
@@ -12,7 +13,7 @@ Install showmaker from [release page](https://github.com/jhk0530/showmaker/relea
 
 ### Header
 
-Header **must** include `title`, `author`, `format`, `embed-resources` like below
+- Header **must** include `title`, `author`, `format`, `embed-resources` like below
 
 ```markdown
 ---
@@ -23,15 +24,25 @@ embed-resources: true
 ---
 ```
 
+You can use `revealjs`(HTML), `pptx`(pptx), `beamer`(pdf) for format.
+
+However, `beamer` requires to install additional tool, so I strongly recommend to use `revealjs `to render HTML and print or save it as PDF.
+
+
 ### Body
 
-- Each page will divided by `#`
+- Each page will divided by `#` and conatin content with `-`
 
 ```markdown
 # Title of page1
 
+- A
+- B
+
 # Title of Page2
 
+- C
+- D
 ```
 
 For more information, see [Quarto presentation](https://quarto.org/docs/presentations/)
@@ -78,33 +89,41 @@ Markdown만 있으면 프레젠테이션 제작 완료!
 
 ## 4. Usage
 
+> Below figure is based on v0.2.3
+
+The main button is `upload`, If this button is not available, please install [Quarto](https://quarto.org/docs/get-started/) and re-launch application.
+
 <img src='images/1.png' width ='100%'>
 
-The most left button is indicator, If this button is not green check, please install [Quarto](https://quarto.org/docs/get-started/) and re-launch application
-
-Second button is upload button, upload your markdown file. 
+Then upload your markdown file. You can upload `.md` file only. After upload markdown file, the second button will appear, it will render and let you download result file.
 
 <img src='images/2.png' width = '100%'>
 
-After upload markdown file, the third button will appear, it will render markdown to slide. So click it.
+The result file will have same name with upload file. In the example, format used `pptx`.
 
 <img src='images/3.png' width = '100%'>
 
-After few seconds, final download button will show, please save result slide as you want.
+There's additional buttons in Right Top. Each shows Homepage, Version of `showmaker` and User manual.
 
+<img src='images/4.png' width = '100%'>
 
-## 5. Result
+## 5. Result (HTML)
 
 <iframe src="example.html" width="100%" height="500px" style="border:2px solid #888; border-radius:8px;"></iframe>
 
 ## 6. Guide to ChatGPT (or Other AI)
 
+You can ask to ChatGPT to build Slide-markdown with below prompt. 
+
+> If you think you have better prompt, your contribute is welcome.
+
 ```markdown
-Make markdown file to build slide with this instruction
+Please make markdown file explaining <TOPIC>, to build slide with this instruction.
 
-1. Markdown should include header to rendered by Quarto: `title`, `author`, `format: revealjs`, `embed-resource:true`
+1. Markdown should include header to rendered by Quarto: 
+`title`, `author`, `format: revealjs`, `embed-resource:true`
 
-for example, 
+For example, 
 
 ---
 title: "쇼메(Showmaker) 데모"
@@ -115,7 +134,7 @@ embed-resources: true
 
 2. Each page should divided by #
 
-for example,
+For example,
 
 # 소개
 
